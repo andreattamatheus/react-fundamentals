@@ -1,3 +1,5 @@
+Treinando Git
+
 ## Configurar o Babel - Transpilar o código
 
 ## Instala as Libs importantes:
