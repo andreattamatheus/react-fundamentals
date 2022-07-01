@@ -113,3 +113,27 @@ Executa sempre que um state, prop, ou definida no corpo do componente mudar. Arr
 
 ## Diferenças entre o useEffect e o useLayoutEffect
 useLayoutEffect trava a renderizaçãoa té finalizar o que deveria ser feito no hook.
+
+
+
+
+# Class Components
+Obs: Método render é renderizado toda vez que o estado da aplicação é alterado.
+
+Acessando props
+Trabalhando com states
+Binding de métodos
+Refatorando para class properties
+Forçando a renderização
+Tipando as props
+Consumindo a Context API
+componentDidMount
+componentDidUpdate
+componentDidCatch
+shouldComponentUdpate
+componentWillUnmount
+Bônus: Convertendo o ThemeProvider para Class Component
+Bônus: Salvando o theme no localStorage
+
+Bônus: HOC para monitorar alterações na Context API
+

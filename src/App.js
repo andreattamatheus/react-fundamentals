@@ -1,31 +1,63 @@
-import React, { useState, useMemo } from 'react';
+// import React, { useState, useMemo } from 'react';
+import React, { Component } from 'react';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider, ThemeContext } from './contexts/ThemeContext'
 
 import GlobalStyle from './styles/global';
 import Layout from './components/Layout';
-import { ThemeProvider } from 'styled-components';
 
 import themes from './styles/themes'
 
-function App() {
-  const [theme , setTheme] = useState('dark');
+class App extends Component {
+  // Usando o bind para injetar a propriedade para a função
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     theme: 'dark'
+  //   }
+  //   this.handleToogleTheme = this.handleToogleTheme.bind(this);
+  // }
 
-  const currentTheme = useMemo(() => {
-    return themes[theme] || themes.dark;
-  }, [theme]);
-
-  function handleToogleTheme(){
-    setTheme(prevState => prevState === 'dark' ? 'light' : 'dark')
+  render(){
+    return(
+      <ThemeProvider>
+        <ThemeContext.Consumer>
+          {
+            ( { theme }) => (
+              <StyledThemeProvider theme={themes[theme] || themes.dark}>
+              <GlobalStyle />
+              <Layout/>
+              </StyledThemeProvider>
+            )
+          }
+        </ThemeContext.Consumer>
+      </ThemeProvider>
+    )
   }
+}
 
-  return (
-    <ThemeProvider theme={currentTheme}>
-      <GlobalStyle />
-      <Layout 
-        onToogleTheme={handleToogleTheme}
-        selectedTheme={theme}      
-      />
-    </ThemeProvider>
-  );
-};
+// Component como Function 
+
+// function App() {
+//   const [theme , setTheme] = useState('dark');
+
+//   const currentTheme = useMemo(() => {
+//     return themes[theme] || themes.dark;
+//   }, [theme]);
+
+//   function handleToogleTheme(){
+//     setTheme(prevState => prevState === 'dark' ? 'light' : 'dark')
+//   }
+
+//   return (
+//     <ThemeProvider theme={currentTheme}>
+//       <GlobalStyle />
+//       <Layout 
+//         onToogleTheme={handleToogleTheme}
+//         selectedTheme={theme}      
+//       />
+//     </ThemeProvider>
+//   );
+// };
 
 export default App;
